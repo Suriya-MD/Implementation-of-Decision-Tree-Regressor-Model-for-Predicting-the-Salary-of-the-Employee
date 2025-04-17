@@ -1,4 +1,4 @@
-# Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee
+# Exp-09 Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee
 
 ## AIM:
 To write a program to implement the Decision Tree Regressor Model for Predicting the Salary of the Employee.
@@ -8,22 +8,77 @@ To write a program to implement the Decision Tree Regressor Model for Predicting
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
 ## Algorithm
-1. 
-2. 
-3. 
-4. 
+1. Import the standard libraries.
+2. Upload the dataset and check for any null values using .isnull() function.
+3. Import LabelEncoder and encode the dataset.
+4. Import DecisionTreeRegressor from sklearn and apply the model on the dataset.
+5. Predict the values of arrays.
+6. Import metrics from sklearn and calculate the MSE and R2 of the model on the dataset.
+7. Predict the values of array.
+8. Apply to new unknown values.
 
 ## Program:
 ```
 /*
 Program to implement the Decision Tree Regressor Model for Predicting the Salary of the Employee.
-Developed by: 
-RegisterNumber:  
+Developed by: SURIYA M
+RegisterNumber:  212223110055
 */
 ```
+```
+import pandas as pd
+import matplotlib.pyplot as plt
+data=pd.read_csv("drive/MyDrive/ML/Salary.csv")
+data.head()
+```
+![image](https://github.com/user-attachments/assets/cb362829-ee27-44d5-a8bf-83aca71a65a7)
+```
+data.info()
+```
+![image](https://github.com/user-attachments/assets/098388e0-9a12-4520-ab3d-7c90ea67b275)
+```
+data.isnull().sum()
+```
+![image](https://github.com/user-attachments/assets/a3372068-9d05-4704-9f7b-c9693e4da3a7)
+```
+from sklearn.preprocessing import LabelEncoder
+le=LabelEncoder()
+data["Position"]=le.fit_transform(data["Position"])
+data.head()
+```
+![image](https://github.com/user-attachments/assets/b6d27983-3eec-4a31-8ba1-b171c6d83737)
+```
+x=data[["Position","Level"]]
+x.head()
+y=data["Salary"]
+y.head()
+```
+![image](https://github.com/user-attachments/assets/60038868-9f58-47e0-9b4c-e03c71f5a00c)
+```
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=2)
+from sklearn.tree import DecisionTreeRegressor
+dt=DecisionTreeRegressor()
+dt.fit(x_train,y_train)
+y_pred=dt.predict(x_test)
+from sklearn import metrics
+mse=metrics.mean_squared_error(y_test,y_pred)
+mse
+```
+![image](https://github.com/user-attachments/assets/980b2e39-2789-4357-b30d-f91814ab34ed)
+```
+from sklearn import metrics
+r2=metrics.r2_score(y_test,y_pred)
+r2
+```
+![image](https://github.com/user-attachments/assets/922cc946-5ae8-460d-82c5-79e58a6b42dc)
+```
+dt.predict([[5,6]])
+```
+![image](https://github.com/user-attachments/assets/fba1fdb3-2813-42fe-8f29-d70e1680ae82)
 
-## Output:
-![Decision Tree Regressor Model for Predicting the Salary of the Employee](sam.png)
+
+
 
 
 ## Result:
